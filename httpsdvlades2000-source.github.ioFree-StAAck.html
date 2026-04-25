@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FreeStack — The Best Free Tools on the Internet</title>
+<meta name="description" content="A handpicked directory of the best zero-cost tools for design, AI, productivity, money, and marketing. Always free. No tricks." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#0e0f12;
+    --ink-soft:#4a4d57;
+    --muted:#7c808a;
+    --line:#ececef;
+    --line-2:#f4f4f6;
+    --accent:#ff5a36;
+    --accent-2:#ffd2c5;
+    --accent-soft:#fff4f0;
+    --chip:#f6f6f8;
+    --shadow-sm: 0 1px 2px rgba(14,15,18,.04), 0 2px 6px rgba(14,15,18,.04);
+    --shadow-md: 0 8px 24px rgba(14,15,18,.06), 0 2px 6px rgba(14,15,18,.04);
+    --shadow-lg: 0 24px 60px rgba(255,90,54,.18), 0 8px 24px rgba(14,15,18,.06);
+    --radius: 18px;
+    --radius-sm: 12px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'DM Sans', system-ui, -apple-system, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{font-family:'Bricolage Grotesque', serif;font-weight:700;letter-spacing:-.02em;line-height:1.05;margin:0}
+
+  /* NAV */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-family:'Bricolage Grotesque', serif;font-size:22px;letter-spacing:-.02em}
+  .logo-mark{
+    width:32px;height:32px;border-radius:9px;
+    background: linear-gradient(135deg, var(--accent), #ff8a6c);
+    display:grid;place-items:center;color:#fff;font-weight:800;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-links{display:flex;gap:28px;color:var(--ink-soft);font-weight:500}
+  .nav-links a{transition:color .18s ease}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-cta{padding:10px 18px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:14px;transition:transform .18s ease, background .18s ease}
+  .nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+  @media (max-width: 760px){ .nav-links{display:none} }
+
+  /* HERO */
+  .hero{padding:88px 0 56px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:auto -10% -50% -10%;height:520px;
+    background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft) 0%, transparent 70%);
+    pointer-events:none;z-index:-1;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
+    background:var(--accent-soft);color:var(--accent);
+    border-radius:999px;font-weight:600;font-size:13px;letter-spacing:.02em;
+    border:1px solid #ffe2d6;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,90,54,.18)}
+  .hero h1{
+    font-size: clamp(40px, 6.6vw, 76px);
+    margin-top:22px;
+    max-width: 14ch;
+  }
+  .hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+  .hero h1 em::after{
+    content:"";position:absolute;left:-2%;right:-2%;bottom:6%;height:14%;
+    background: var(--accent-2); z-index:-1; border-radius:6px;
+  }
+  .hero p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin-top:18px}
+
+  .search{
+    margin-top:34px;display:flex;align-items:center;gap:10px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:8px 8px 8px 22px;max-width:640px;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  }
+  .search:focus-within{border-color:var(--accent);box-shadow: 0 0 0 6px rgba(255,90,54,.12), var(--shadow-md)}
+  .search svg{flex:none;color:var(--muted)}
+  .search input{
+    flex:1;border:none;outline:none;font:inherit;font-size:16px;color:var(--ink);
+    background:transparent;padding:14px 0;
+  }
+  .search button{
+    background:var(--ink);color:#fff;font-weight:600;
+    padding:13px 22px;border-radius:999px;font-size:15px;
+    transition:background .18s ease, transform .18s ease;
+  }
+  .search button:hover{background:var(--accent)}
+
+  .stats{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap}
+  .stat strong{font-family:'Bricolage Grotesque',serif;font-size:30px;display:block;letter-spacing:-.02em}
+  .stat span{color:var(--muted);font-size:14px}
+
+  /* CATEGORY BAR */
+  .cats{display:flex;gap:10px;margin:48px 0 26px;flex-wrap:wrap}
+  .chip{
+    padding:11px 20px;border-radius:999px;background:var(--chip);color:var(--ink-soft);
+    font-weight:600;font-size:14px;border:1px solid transparent;
+    transition: all .18s ease;
+  }
+  .chip:hover{background:#fff;border-color:var(--line);color:var(--ink)}
+  .chip.active{background:var(--ink);color:#fff}
+  .chip .ct{margin-left:6px;color:inherit;opacity:.65;font-weight:500;font-size:12px}
+
+  /* TOP PICK BANNER */
+  .toppick{
+    margin: 8px 0 56px; border-radius: 28px;
+    background:
+      radial-gradient(120% 140% at 100% 0%, #ffd2c5 0%, transparent 55%),
+      linear-gradient(135deg, #1a1b20 0%, #0e0f12 100%);
+    color:#fff; padding: 40px; position:relative; overflow:hidden;
+    display:grid; grid-template-columns: 1.4fr .9fr; gap:32px; align-items:center;
+    box-shadow: var(--shadow-lg);
+  }
+  .toppick::before{
+    content:"TOP PICK · TODAY";
+    position:absolute; top:24px; right:28px;
+    font-size:11px; letter-spacing:.18em; font-weight:700;
+    color:var(--accent);
+  }
+  .toppick h2{font-size:clamp(28px,3.6vw,46px);max-width:18ch}
+  .toppick .tp-meta{display:flex;gap:14px;align-items:center;margin-top:18px;color:#cfd0d6}
+  .toppick .tp-meta .dot{width:4px;height:4px;border-radius:50%;background:#5b5d66}
+  .tp-cta{
+    margin-top:28px;display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:#fff;padding:14px 24px;border-radius:999px;font-weight:700;
+    transition: transform .18s ease, background .18s ease;
+  }
+  .tp-cta:hover{background:#fff;color:var(--ink);transform:translateY(-2px)}
+  .tp-card{
+    background:#fff;color:var(--ink);border-radius:20px;padding:24px;
+    box-shadow: 0 30px 60px rgba(0,0,0,.35);
+    transform: rotate(2deg);
+  }
+  .tp-card .logo-tile{
+    width:54px;height:54px;border-radius:14px;
+    background:linear-gradient(135deg,#ff5a36,#ffb199); color:#fff;
+    display:grid;place-items:center;font-weight:800;font-size:22px;font-family:'Bricolage Grotesque',serif;
+  }
+  .tp-card h4{font-size:22px;margin-top:12px;font-family:'Bricolage Grotesque',serif}
+  .tp-card p{color:var(--ink-soft);margin:6px 0 14px;font-size:14.5px}
+  .stars{color:var(--accent);font-size:14px;letter-spacing:1px}
+  @media (max-width: 860px){
+    .toppick{grid-template-columns:1fr;padding:30px}
+    .tp-card{transform:none}
+    .toppick::before{position:static;display:block;margin-bottom:8px}
+  }
+
+  /* GRID */
+  .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px;gap:18px;flex-wrap:wrap}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px)}
+  .section-head p{color:var(--muted);margin:6px 0 0}
+  .results-meta{font-size:14px;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width: 620px){ .grid{grid-template-columns:1fr} }
+
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;display:flex;flex-direction:column;gap:14px;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:#e3e3e7}
+  .card-top{display:flex;align-items:center;gap:14px}
+  .logo-tile{
+    width:46px;height:46px;border-radius:12px;flex:none;
+    display:grid;place-items:center;color:#fff;font-weight:800;
+    font-family:'Bricolage Grotesque',serif;font-size:18px;
+  }
+  .card h3{font-family:'Bricolage Grotesque',serif;font-size:20px;margin:0}
+  .card .cat-tag{
+    font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;
+  }
+  .card p{color:var(--ink-soft);margin:0;font-size:14.5px;flex:1}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+  .card .rating{font-size:13px;color:var(--muted)}
+  .card .rating b{color:var(--ink);font-weight:700;margin-right:4px}
+  .try{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 18px;background:var(--ink);color:#fff;border-radius:999px;
+    font-weight:600;font-size:14px;
+    transition: background .18s ease, transform .18s ease, gap .18s ease;
+  }
+  .try:hover{background:var(--accent);gap:12px}
+  .try::after{content:"→";transition:transform .18s ease}
+  .try:hover::after{transform:translateX(2px)}
+
+  .empty{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
+    border:1px dashed var(--line);border-radius:var(--radius);
+  }
+
+  /* NEWSLETTER */
+  .news{
+    margin: 90px 0; border-radius:28px; padding:56px 40px; text-align:center;
+    background:
+      radial-gradient(80% 100% at 50% 0%, var(--accent-soft) 0%, transparent 70%),
+      #fff;
+    border:1px solid var(--line);
+  }
+  .news h2{font-size:clamp(30px,4vw,48px);max-width:18ch;margin:0 auto}
+  .news p{color:var(--ink-soft);max-width:54ch;margin:14px auto 0}
+  .news form{
+    display:flex;gap:10px;max-width:480px;margin:28px auto 0;
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .news form:focus-within{border-color:var(--accent);box-shadow:0 0 0 6px rgba(255,90,54,.12)}
+  .news input{flex:1;border:none;outline:none;font:inherit;font-size:15px;background:transparent;padding:13px 0}
+  .news button{background:var(--accent);color:#fff;border-radius:999px;padding:12px 22px;font-weight:700}
+  .news button:hover{background:var(--ink)}
+  .news .tiny{font-size:12px;color:var(--muted);margin-top:14px}
+  .news-success{color:#0a8a4a;font-weight:600;margin-top:14px;display:none}
+
+  /* FAQ */
+  .faq{margin: 24px 0 90px; display:grid; grid-template-columns: 1fr 1.2fr; gap:48px}
+  @media (max-width: 860px){ .faq{grid-template-columns:1fr} }
+  .faq h2{font-size:clamp(30px,4vw,46px)}
+  .faq-side p{color:var(--ink-soft);margin-top:14px}
+  .faq-list{display:flex;flex-direction:column;gap:12px}
+  details{
+    border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:#fff;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  details[open]{border-color:#e3e3e7;box-shadow:var(--shadow-sm)}
+  summary{
+    list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+    font-weight:600;font-size:16.5px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .plus{
+    width:28px;height:28px;border-radius:50%;background:var(--chip);
+    display:grid;place-items:center;font-size:18px;color:var(--ink-soft);
+    transition: transform .25s ease, background .2s ease;
+  }
+  details[open] summary .plus{transform:rotate(45deg);background:var(--accent);color:#fff}
+  details p{color:var(--ink-soft);margin:14px 0 4px;font-size:15px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:48px 0 32px;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a:hover{color:var(--accent)}
+  .disc{
+    margin-top:28px;padding:16px 18px;background:var(--line-2);border-radius:12px;
+    font-size:12.5px;line-height:1.6;color:#5d616c;
+  }
+
+  /* Animations */
+  @keyframes rise { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+  .reveal{animation: rise .6s ease both}
+  .reveal.d1{animation-delay:.06s}
+  .reveal.d2{animation-delay:.12s}
+  .reveal.d3{animation-delay:.18s}
+  .reveal.d4{animation-delay:.24s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">F</span>
+      FreeStack
+    </a>
+    <nav class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#tools" class="nav-cta">Browse Free Tools</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="badge reveal">
+      <span class="dot"></span> 47 free tools · updated weekly
+    </div>
+    <h1 class="reveal d1">The Best <em>Free Tools</em> on the Internet</h1>
+    <p class="lede reveal d2">
+      A handpicked directory of the best zero-cost tools for design, AI, productivity,
+      money, and marketing. No paywalls. No bait-and-switch. Just real free.
+    </p>
+
+    <form class="search reveal d3" id="searchForm" onsubmit="event.preventDefault();">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="text" placeholder="Search 47 free tools — try 'AI', 'logo', 'invoice'…" autocomplete="off"/>
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="stats reveal d4">
+      <div class="stat"><strong>47</strong><span>free tools listed</span></div>
+      <div class="stat"><strong>$12,400</strong><span>avg. user savings/yr</span></div>
+      <div class="stat"><strong>28k</strong><span>weekly readers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="wrap">
+  <div class="cats" id="cats"></div>
+
+  <!-- TOP PICK -->
+  <div class="toppick">
+    <div>
+      <h2>Today's Top Pick: build a website in 60 seconds, free forever.</h2>
+      <div class="tp-meta">
+        <span>Editor's choice</span><span class="dot"></span><span>Used by 14k+ readers</span><span class="dot"></span><span class="stars">★★★★★</span>
+      </div>
+      <a class="tp-cta" href="https://carrd.co" target="_blank" rel="sponsored noopener">
+        Try Carrd Free →
+      </a>
+    </div>
+    <div class="tp-card">
+      <div class="logo-tile" style="background:linear-gradient(135deg,#ff5a36,#ffb199)">C</div>
+      <h4>Carrd</h4>
+      <p>One-page sites that look great on every device. Free plan supports 3 sites.</p>
+      <div class="stars">★★★★★ <span style="color:var(--muted);font-weight:500;margin-left:6px">4.9</span></div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div>
+      <h2>All free tools</h2>
+      <p>Curated and tested. Filter by category or search above.</p>
+    </div>
+    <div class="results-meta" id="resultsMeta"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" class="wrap">
+  <div class="news">
+    <h2>Get 3 new free tools every week.</h2>
+    <p>Hand-picked by humans, never sponsored. Unsubscribe in one click. Join 28,000+ smart readers who beat overpriced SaaS.</p>
+    <form id="newsForm" onsubmit="return handleNews(event)">
+      <input type="email" required placeholder="you@goodtaste.com" id="newsEmail"/>
+      <button type="submit">Subscribe Free</button>
+    </form>
+    <div class="tiny">No spam. No selling your email. Just 3 great free tools, every Sunday.</div>
+    <div class="news-success" id="newsSuccess">✓ You're in. Check your inbox for confirmation.</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="wrap">
+  <div class="faq">
+    <div class="faq-side">
+      <h2>Why is everything actually free?</h2>
+      <p>Short answer: most great tools have generous free tiers because they're trying to win you over. We just collect them in one place — and earn a small commission only when you upgrade later (which keeps the lights on at $0 cost to you).</p>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Are these tools 100% free? <span class="plus">+</span></summary>
+        <p>Every tool has a real, usable free tier — not just a 7-day trial. Some offer paid upgrades, but the free version is enough for most people.</p>
+      </details>
+      <details>
+        <summary>How do you make money? <span class="plus">+</span></summary>
+        <p>Some links are affiliate links. If you eventually upgrade to a paid plan, we earn a small commission at no extra cost to you. We never get paid to rank a tool higher.</p>
+      </details>
+      <details>
+        <summary>Why no ads or pop-ups? <span class="plus">+</span></summary>
+        <p>Because we hate them too. Affiliate revenue means we don't need to clutter the page or sell your data.</p>
+      </details>
+      <details>
+        <summary>Can I suggest a tool? <span class="plus">+</span></summary>
+        <p>Yes — reply to any newsletter email. We test every suggestion personally before adding it.</p>
+      </details>
+      <details>
+        <summary>Is the site really free to run? <span class="plus">+</span></summary>
+        <p>Yep. It's a single static HTML file hosted free on GitHub Pages, Netlify, or Vercel. No server, no database, no monthly bill.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo" style="font-size:18px"><span class="logo-mark" style="width:26px;height:26px;border-radius:7px;font-size:13px">F</span> FreeStack</div>
+        <div style="margin-top:8px">© <span id="yr"></span> FreeStack. Built with affection, hosted for $0.</div>
+      </div>
+      <nav class="foot-links">
+        <a href="#privacy" id="privacyLink">Privacy Policy</a>
+        <a href="#disclaimer" id="disclaimerLink">Affiliate Disclaimer</a>
+        <a href="mailto:hello@freestack.example">Contact</a>
+        <a href="#tools">Browse Tools</a>
+      </nav>
+    </div>
+    <div class="disc">
+      <strong>Affiliate disclaimer:</strong> Some links on this page are affiliate links. If you click through and later upgrade to a paid plan,
+      FreeStack may receive a small commission at no additional cost to you. This helps keep the site free, ad-free, and independent.
+      We only feature tools we genuinely believe are useful, and rankings are never paid.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const TOOLS = [
+    { name:"Canva", cat:"Design", desc:"Drag-and-drop graphic design with thousands of free templates for social, slides, and print.", rating:4.8, color:"#00C4CC", initial:"C", aff:"https://www.canva.com" },
+    { name:"Figma", cat:"Design", desc:"Collaborative interface design tool. The free Starter plan covers 3 active projects per editor.", rating:4.9, color:"#A259FF", initial:"F", aff:"https://www.figma.com" },
+    { name:"Photopea", cat:"Design", desc:"Browser-based Photoshop alternative. Opens PSD, AI, Sketch, and XD files. 100% free.", rating:4.7, color:"#18A0FB", initial:"P", aff:"https://www.photopea.com" },
+    { name:"Coolors", cat:"Design", desc:"Generate beautiful color palettes in seconds. Export to CSS, SVG, PDF for free.", rating:4.7, color:"#ff5a36", initial:"C", aff:"https://coolors.co" },
+    { name:"ChatGPT", cat:"AI", desc:"OpenAI's conversational assistant. Free tier with GPT-4o mini for daily writing, brainstorming, coding.", rating:4.9, color:"#10A37F", initial:"G", aff:"https://chat.openai.com" },
+    { name:"Claude", cat:"AI", desc:"Anthropic's AI with industry-leading reasoning. Free tier includes Sonnet 4 for daily use.", rating:4.9, color:"#cc785c", initial:"C", aff:"https://claude.ai" },
+    { name:"Perplexity", cat:"AI", desc:"AI search engine with cited sources. Free tier is generous and replaces Google for research.", rating:4.7, color:"#20808d", initial:"P", aff:"https://www.perplexity.ai" },
+    { name:"Suno", cat:"AI", desc:"Generate full songs with vocals from a text prompt. Free plan gives 10 songs daily.", rating:4.6, color:"#000000", initial:"S", aff:"https://suno.com" },
+    { name:"Notion", cat:"Productivity", desc:"Docs, wiki, tasks, and databases in one app. Free plan is unlimited for personal use.", rating:4.8, color:"#000000", initial:"N", aff:"https://www.notion.so" },
+    { name:"Todoist", cat:"Productivity", desc:"Friendly task manager with natural-language input. Free plan covers 5 active projects.", rating:4.7, color:"#e44332", initial:"T", aff:"https://todoist.com" },
+    { name:"Cal.com", cat:"Productivity", desc:"Open-source Calendly alternative. Unlimited free meetings with custom branding.", rating:4.8, color:"#111827", initial:"C", aff:"https://cal.com" },
+    { name:"Obsidian", cat:"Productivity", desc:"Local-first knowledge base with backlinks. Free for personal use, forever.", rating:4.9, color:"#7c3aed", initial:"O", aff:"https://obsidian.md" },
+    { name:"Wise", cat:"Money", desc:"Send money abroad at the real exchange rate. Free multi-currency account in 50+ currencies.", rating:4.8, color:"#9fe870", initial:"W", aff:"https://wise.com" },
+    { name:"Revolut", cat:"Money", desc:"All-in-one money app with free standard plan, virtual cards, and stock investing.", rating:4.6, color:"#0075EB", initial:"R", aff:"https://www.revolut.com" },
+    { name:"Wave", cat:"Money", desc:"Free invoicing and accounting for freelancers and small businesses. Forever free.", rating:4.7, color:"#1eb583", initial:"W", aff:"https://www.waveapps.com" },
+    { name:"Monarch Money", cat:"Money", desc:"Modern personal finance dashboard that tracks budgets, bills and investments automatically.", rating:4.6, color:"#3eb489", initial:"M", aff:"https://www.monarchmoney.com" },
+    { name:"MailerLite", cat:"Marketing", desc:"Email marketing with a generous free tier — up to 1,000 subscribers and 12,000 emails/mo.", rating:4.8, color:"#09c269", initial:"M", aff:"https://www.mailerlite.com" },
+    { name:"Buffer", cat:"Marketing", desc:"Schedule posts to Twitter, LinkedIn, Instagram. Free plan covers 3 channels.", rating:4.6, color:"#231f20", initial:"B", aff:"https://buffer.com" },
+    { name:"Brevo", cat:"Marketing", desc:"Email + SMS marketing with 300 free emails per day, no subscriber cap.", rating:4.5, color:"#0b996e", initial:"B", aff:"https://www.brevo.com" },
+    { name:"Plausible", cat:"Marketing", desc:"Privacy-friendly Google Analytics alternative. Free 30-day trial, then open-source self-host.", rating:4.7, color:"#5850ec", initial:"P", aff:"https://plausible.io" },
+  ];
+
+  const CATEGORIES = ["All","Design","AI","Productivity","Money","Marketing"];
+  const grid = document.getElementById('grid');
+  const catsEl = document.getElementById('cats');
+  const searchInput = document.getElementById('searchInput');
+  const resultsMeta = document.getElementById('resultsMeta');
+  let activeCat = "All", query = "";
+
+  function starString(r){
+    const full = Math.round(r);
+    return "★★★★★".slice(0,full)+"☆☆☆☆☆".slice(0,5-full);
+  }
+
+  function renderCats(){
+    catsEl.innerHTML = CATEGORIES.map(c => {
+      const count = c==="All" ? TOOLS.length : TOOLS.filter(t=>t.cat===c).length;
+      return `<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${c}<span class="ct">${count}</span></button>`;
+    }).join('');
+    catsEl.querySelectorAll('.chip').forEach(b=>{
+      b.addEventListener('click',()=>{ activeCat=b.dataset.cat; renderCats(); renderGrid(); });
+    });
+  }
+
+  function renderGrid(){
+    const q = query.trim().toLowerCase();
+    const filtered = TOOLS.filter(t=>{
+      const catOk = activeCat==="All"||t.cat===activeCat;
+      const qOk = !q||t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q);
+      return catOk&&qOk;
+    });
+    resultsMeta.textContent = `${filtered.length} tool${filtered.length===1?'':'s'}${activeCat!=="All"?' in '+activeCat:''}${q?` matching "${q}"`:''}`; 
+    if(!filtered.length){
+      grid.innerHTML=`<div class="empty">No tools match that search. Try "AI", "design", or clear the filter.</div>`;
+      return;
+    }
+    grid.innerHTML = filtered.map((t,i)=>`
+      <article class="card reveal ${i<4?'d'+(i+1):''}">
+        <div class="card-top">
+          <div class="logo-tile" style="background:linear-gradient(135deg,${t.color},${t.color}cc)">${t.initial}</div>
+          <div style="flex:1"><h3>${t.name}</h3><span class="cat-tag">${t.cat}</span></div>
+        </div>
+        <p>${t.desc}</p>
+        <div class="card-foot">
+          <div class="rating"><b>${t.rating.toFixed(1)}</b> <span>${starString(t.rating)}</span></div>
+          <a class="try" href="${t.aff}" target="_blank" rel="sponsored noopener">Try Free</a>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  searchInput.addEventListener('input',e=>{ query=e.target.value; renderGrid(); });
+
+  function handleNews(e){
+    e.preventDefault();
+    document.getElementById('newsForm').style.display='none';
+    document.getElementById('newsSuccess').style.display='block';
+    return false;
+  }
+
+  document.getElementById('privacyLink').addEventListener('click',(e)=>{
+    e.preventDefault();
+    alert("Privacy Policy\n\nFreeStack is a single static HTML page. We do not collect, store, or sell any personal data. We do not use tracking cookies. Affiliate networks may set their own cookies after you click an outbound link.");
+  });
+  document.getElementById('disclaimerLink').addEventListener('click',(e)=>{
+    e.preventDefault();
+    alert("Affiliate Disclaimer\n\nFreeStack participates in affiliate programs. Some outbound links are affiliate links — if you click through and later upgrade to a paid plan, we may earn a small commission at no extra cost to you. Rankings are editorial and never paid.");
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  renderCats();
+  renderGrid();
+</script>
+</body>
+</html>
